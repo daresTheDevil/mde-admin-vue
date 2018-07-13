@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "author": "David Kay <dkay@mdek12.org>",
   "description": "MDE administration app",
-  "license": null,
+  "license": "MIT",
   "main": "./dist/electron/main.js",
   "scripts": {
     "build": "node .electron-vue/build.js && electron-builder",
@@ -24,7 +24,7 @@
   },
   "build": {
     "productName": "mde-adminapp",
-    "appId": "org.simulatedgreg.electron-vue",
+    "appId": "org.davidbkay.mdeadmin",
     "directories": {
       "output": "build"
     },
@@ -57,12 +57,13 @@
     }
   },
   "dependencies": {
-    "vue": "^2.4.2",
     "axios": "^0.16.1",
+    "vue": "^2.4.2",
     "vue-electron": "^1.0.6",
+    "vue-md-loader": "^1.0.0",
     "vue-router": "^2.5.3",
-    "vuex": "^2.3.1",
-    "vuetify": "1.0.0"
+    "vuetify": "1.0.0",
+    "vuex": "^2.3.1"
   },
   "devDependencies": {
     "babel-core": "^6.25.0",
