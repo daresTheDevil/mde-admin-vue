@@ -28,41 +28,27 @@
     
     <v-toolbar app fixed clipped-left>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
-      <v-toolbar-title>MDE Admin</v-toolbar-title>
+      <v-toolbar-title>
+        <router-link to="/" tag="span" style="cursor: pointer">
+          {{ appTitle }}
+        </router-link>
+      </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
-      <v-btn flat>MSIS</v-btn>
-      <v-btn flat>ELMS</v-btn>
-      <v-btn flat>WEB</v-btn>
-      <v-btn flat>MSRC</v-btn>
+        <v-btn v-for="item in menuItems"
+          :key="item.title"
+          :to="item.path"
+        >
+        <v-icon left dark>{{ item.icon }}</v-icon>
+        {{ item.title }}
+        </v-btn>
     </v-toolbar-items>
     </v-toolbar>
+    
     <v-content>
-      <v-container fluid fill-height>
-        <v-layout justify-center align-center>
-          <v-flex shrink>
-            <v-tooltip right>
-              <v-btn
-                slot="activator"
-                :href="source"
-                icon
-                large
-                target="_blank"
-              >
-                <v-icon large>code</v-icon>
-              </v-btn>
-              <span>Source</span>
-            </v-tooltip>
-            <v-tooltip right>
-              <v-btn slot="activator" icon large href="https://codepen.io/johnjleider/pen/qxQWda" target="_blank">
-                <v-icon large>mdi-codepen</v-icon>
-              </v-btn>
-              <span>Codepen</span>
-            </v-tooltip>
-          </v-flex>
-        </v-layout>
-      </v-container>
+      <router-view></router-view>
     </v-content>
+    
     <v-footer app fixed color="grey darken-3" height="auto">
       <v-container class="py-0 my-0" fluid>
         <v-layout row>
@@ -129,11 +115,16 @@
 
 <script>
   export default {
-    data: () => ({
-      drawer: true,
-    }),
-    props: {
-      source: String,
+    data() {
+      return {
+        appTitle: 'MSRC',
+        menuItems: [
+          { title: 'Home', path: '/home', icon: 'home' },
+          { title: 'Sign Up', path: '/signup', icon: 'face' },
+          { title: 'Sign In', path: '/signin', icon: 'lock_open' },
+        ],
+        drawer: true,
+      };
     },
   };
 </script>
