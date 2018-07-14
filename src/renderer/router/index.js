@@ -1,23 +1,22 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 
+const routerOptions = [
+  { path: '/', component: 'Landing' },
+  { path: '/signin', component: 'Signin' },
+  { path: '/signup', component: 'Signup' },
+  { path: '/home', component: 'Home' },
+];
+
+const routes = routerOptions.map(route => ({
+  ...route,
+  component: () => import(`@/components/${route.component}.vue`),
+}));
+
 Vue.use(Router);
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'welcome-view',
-      component: require('@/components/WelcomeView').default,
-    },
-    {
-      path: '/inspire',
-      name: 'inspire',
-      component: require('@/components/InspireView').default,
-    },
-    {
-      path: '*',
-      redirect: '/',
-    },
-  ],
-});
+  mode: 'history',
+  routes,
+})
+;
